@@ -1,0 +1,76 @@
+﻿@model IEnumerable<BE.Medicine>  
+@{
+    ViewBag.Title = "Prescription_";
+    Layout = "~/Views/LayoutPage.cshtml";
+}
+
+
+<div class="site-section pb-0">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-7 pr-md-7 mb-5">
+                <form action="#" method="post">
+                    <div class="form-group">
+                        @*<label for="PatientId">Patient ID</label>*@
+                        <input name="PatientId" type="hidden" value="@ViewBag.id" class="form-control" id="PatientId" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="PatientName">Patient Name</label>
+                        <input name="PatientName" type="text" value="@ViewBag.first @ViewBag.last" class="form-control" id="PatientFirstName" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="DoctorName">Doctor Name</label>
+                        <input name="DoctorName" type="text" value="@RouteConfig.user.FirstName @RouteConfig.user.LastName" class="form-control" id="DoctorName" disabled>
+                    </div>
+                    @*<div class="form-group">
+            <label for="DoctorLastName">Doctor Last Name</label>
+            <input name="DoctorLastName" type="text" value="@RouteConfig.user.LastName" class="form-control" id="DoctorLastName" disabled>
+        </div>*@
+                    <div>
+                        <label for="Medicine">Medicine</label>
+                        <select name="Medicine" id="Medicine">
+
+                            @foreach (var item in Model)
+                            {
+                                <option>
+                                    @(item.CommercialName)
+                                </option>
+
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="BeginDate">Begin Date</label>
+                        <input name="BeginDate" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" id="BeginDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="FinishDate">Finish Date</label>
+                        <input name="FinishDate" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" class="form-control" id="FinishDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Frequency">Frequency</label>
+                        <input name="Frequency" type="text" class="form-control" id="Frequency" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Comments">Comments</label>
+                        <input name="Comments" type="text" class="form-control" id="Comments" required>
+                    </div>
+                    <p style="color:red">@ViewBag.errorDate</p>
+                    <div class="form-group">
+                        @*<a data-toggle="modal" data-target="#popup1" style="color:#C7187D; font-family:'Segoe UI';right:1000px"></a>*@
+                        <input type="submit" style="width:auto; background-color:maroon" class="btn btn-primary py-3 px-5" value="Add Prescription">
+                    </div>
+                </form>
+            </div>
+
+
+
+
+        </div> <!-- .row -->
+
+    </div>
+</div>
+
+
+
+

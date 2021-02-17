@@ -1,0 +1,64 @@
+﻿@model BE.Prescription
+@{
+    ViewBag.Title = "AreYouSure";
+    Layout = "~/Views/LayoutPage.cshtml";
+}
+
+<div class="site-section pb-0">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-7 pr-md-7 mb-5" style=" text-align-last: center; min-width: -webkit-fill-available;">
+                <form action="#" method="post">
+                    <h2 style=" font-family: cursive; font-size: 30px;">Our services have reviewed your request and these are the results:</h2>
+                    <br />
+                    <h2 style=" font-family: cursive; font-size: 30px;">@ViewBag.message</h2>
+                    <br />
+                    <h3 style=" font-family: cursive; font-size: 30px;">Are you sure you want to add this prescription?</h3>
+                    <div class="form-group">
+                        <input type="hidden" value="@Model.Id" id="id" name="id" />
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" value="@Model.Medicine" id="medicine" name="medicine" />
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" value="@Model.DoctorFirstName" id="first" name="first" />
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" value="@Model.DoctorLastName" id="last" name="last" />
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" value="@Model.BeginTime" id="begin" name="begin" />
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" value="@Model.FinishTime" id="finish" name="finish" />
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" value="@Model.Ndc" id="ndc" name="ndc" />
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" value="@Model.Frequency" id="Frequency" name="Frequency" />
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" value="@Model.Comments" id="Comments" name="Comments" />
+                    </div>
+
+                    <input name="submit" type="submit" id="submit" value="Add Prescription" style="width:auto; background-color:maroon" class="btn btn-primary py-3 px-5" />
+                    <input name="submit" type="submit" id="process" value="Cancel" style="width:auto; background-color:maroon" class="btn btn-primary py-3 px-5" />
+
+                </form>
+
+            </div>
+        </div> <!-- .row -->
+
+    </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<bdr />
+
+
+

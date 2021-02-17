@@ -1,0 +1,95 @@
+﻿@model IEnumerable<BE.Patient>
+
+@{
+    ViewBag.Title = "Patients";
+    Layout = "~/Views/LayoutPage.cshtml";
+}
+
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<h3>Patients</h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @if (RouteConfig.user.ReturnType() == "Admin")
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                }
+                |
+                @if (RouteConfig.user.ReturnType() == "Admin" || RouteConfig.user.ReturnType() == "Doctor")
+                {
+                    @Html.ActionLink("Prescriptions", "Prescriptions", new { id = item.Id })
+                }
+                |
+                @if (RouteConfig.user.ReturnType() == "Admin")
+                {
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    @if (RouteConfig.user.ReturnType() == "Admin")
+    {
+        @*Html.ActionLink("Add Patient", "AddPatient")*@
+    <a class="blue-btn" href="~/Patient/AddPatient" style="color:white"><i class="fa fa-sign-in"></i>Add Patient</a>
+
+    }
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<bdr />
+
+

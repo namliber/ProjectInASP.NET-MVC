@@ -1,0 +1,150 @@
+﻿@model IEnumerable<BE.Medicine>
+
+@{
+    ViewBag.Title = "Catalog";
+    Layout = "~/Views/LayoutPage.cshtml";
+}
+
+
+
+<script>
+    function addImage(add_button) {
+
+        document.getElementById("id").value = add_button.getAttribute("Medicine-id");
+
+    }
+</script>
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<h3>Medicine Catalog</h3>
+@*<a>@ViewBag.message</a>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CommercialName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GenericName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Producer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActiveIngredients)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DoseCharacteristic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommercialName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GenericName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Producer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActiveIngredients)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DoseCharacteristic)
+            </td>
+            <td>
+                @Html.DisplayImage(@item.ImageUrl, 200)
+                @{ try
+                    {
+                        if (TempData["id"] != null)
+                        {
+                            if (item.Id == int.Parse(TempData["id"].ToString()))
+                            {
+                                <br />
+                                <a style="color:red">@TempData["message"]</a>
+                            }
+                        }
+                    }
+                   catch (Exception) { }
+                  }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
+                @if (item.ImageUrl == null)
+                {
+                    <a onclick="addImage(this)" Medicine-id="@item.Id" data-toggle="modal" data-target="#popup1" style="color:maroon; cursor:pointer" @*style="color:#C7187D; font-family:'Segoe UI';right:1000px"*@>Add Image</a>
+                }
+                else
+                {
+                    <a onclick="addImage(this)" Medicine-id="@item.Id" data-toggle="modal" data-target="#popup1" style="color:maroon; cursor:pointer" @*style="color:#C7187D; font-family:'Segoe UI';right:1000px"*@>Update Image</a>
+                }
+
+                @using (Html.BeginForm("AddImage", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="modal fade" id="popup1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <form dir="rtl" style="font-family:'Segoe UI';" name="example" action="~/Home/AddImage" method="post">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="text-align:left">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+
+                                    <div>
+                                        <label for="name" style="text-align:center"> Please select an image</label>
+                                        <input name="file" type="file" class="form-control" id="file" required>
+                                        <label for="name" style=" color:red ">@ViewBag.message </label>
+                                    </div>
+                                    <div class="modal-footer" style="text-align:left">
+                                        @*<input type="hidden" id="id" name="id" value="@item.Id" />*@
+                                        <input id="id" name="id" type="hidden" required />
+                                        @if (item.ImageUrl == null)
+                                        {
+                                            @*<button class="btn btn-outline-secondary" data-dismiss="modal">Exit</button>*@
+                                            <input type="submit" style="width:auto; background-color:maroon" class="btn btn-primary py-3 px-5" value="Add Image">
+                                        }
+                                        else
+                                        { <input type="submit" style="width:auto; background-color:maroon" class="btn btn-primary py-3 px-5" value="Update Image">}
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    @*Html.ActionLink("Add Medicine", "Create")*@
+    <a class="blue-btn" href="~/Home/Create" style="color:white"><i class="fa fa-sign-in"></i>Add Medicine</a>
+</div>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<bdr />

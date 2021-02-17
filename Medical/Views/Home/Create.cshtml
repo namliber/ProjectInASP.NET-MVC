@@ -1,0 +1,58 @@
+﻿@*@model IEnumerable<BE.Medicine>*@
+@model Medical.Models.ImageViewModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/LayoutPage.cshtml";
+}
+
+    <div class="site-section pb-0">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-7 pr-md-7 mb-5">
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <label for="name">Commercial Name</label>
+                            <input name="CommercialName" type="text" pattern="[A-Za-z]{1,}" class="form-control" id="CommercialName" required value="@ViewBag.CommercialName">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Generic Name</label>
+                            <input name="GenericName" type="text" pattern="[A-Za-z]{1,}" class="form-control" id="GenericName" required value="@ViewBag.GenericName">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Producer</label>
+                            <input name="Producer" type="text" pattern="[A-Za-z]{1,}" class="form-control" id="Producer" required value="@ViewBag.Producer">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Active Ingredients</label>
+                            <input name="ActiveIngredients" type="text" pattern="[A-Za-z]{1,}" class="form-control" id="ActiveIngredients" required value="@ViewBag.ActiveIngredients">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Dose Characteristic </label>
+                            <input name="DoseCharacteristic" type="text" pattern="[A-Za-z]{1,}" class="form-control" id="DoseCharacteristic" required value="@ViewBag.DoseCharacteristic">
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="message">NDC </label>
+                            <input name="NDC" type="text" pattern="[0-9]{4,}[-]{1}[0-9]{3,}" class="form-control" id="NDC" required>
+                            <label for="message2" style=" color:red ">@ViewBag.message2 </label>
+                        </div>
+                        <div class="form-group">
+                            <label for="message1" style=" color:red ">@ViewBag.message1 </label>
+                            <input type="submit" style="width:auto; background-color:maroon" class="btn btn-primary py-3 px-5" value="Add Medicine">
+                        </div>
+
+                    </form>
+                    
+
+
+                </div>
+
+
+
+            </div> <!-- .row -->
+
+        </div>
+    </div>
+
+

@@ -1,0 +1,98 @@
+﻿@model IEnumerable<BE.Prescription>
+
+@{
+    ViewBag.Title = "Prescriptions";
+    Layout = "~/Views/LayoutPage.cshtml";
+}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">‏
+
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<h3>Prescriptions</h3>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PatientId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DoctorFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DoctorLastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Medicine)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BeginTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinishTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Frequency)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comments)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.PatientId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DoctorFirstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DoctorLastName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Medicine)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.BeginTime)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FinishTime)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Frequency)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Comments)
+    </td>
+    <td>
+        <button type="button" style="width:auto; color:white; background-color:maroon" class="fa fa-print" onclick="location.href='@Url.Action("Print","Patient",new { id = item.Id })'"></button>
+    </td>
+</tr>
+    }
+
+</table>
+@if (RouteConfig.user.ReturnType() == "Doctor")
+{
+    <div>
+        @Html.ActionLink("Add Prescription", "Prescription_", new { id = ViewBag.id }, new { @class = "blue-btn", @style = "color:white" })
+    </div>
+
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<bdr />
